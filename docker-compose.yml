@@ -29,4 +29,4 @@ services:
     environment:
       POSTGRES_USER: mr_data
       POSTGRES_PASSWORD: omnomdata
-      POSTGRES_DB: default_database
+      POSTGRES_DB: mrs_db

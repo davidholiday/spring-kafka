@@ -1,0 +1,50 @@
+{
+  "$schema" : "http://json-schema.org/draft-07/schema#",
+  "definitions" : {
+    "Money" : {
+      "type" : "object",
+      "properties" : {
+        "money" : {
+          "type" : "object",
+          "properties" : {
+            "amount" : {
+              "type" : "number"
+            },
+            "currency" : {
+              "type" : "object",
+              "properties" : {
+                "code" : {
+                  "type" : "string"
+                },
+                "decimalPlaces" : {
+                  "type" : "integer"
+                },
+                "numericCode" : {
+                  "type" : "integer"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "type" : "object",
+  "properties" : {
+    "bet" : {
+      "$ref" : "#/definitions/Money"
+    },
+    "gameId" : {
+      "type" : "string"
+    },
+    "payout" : {
+      "$ref" : "#/definitions/Money"
+    },
+    "playerId" : {
+      "type" : "string"
+    },
+    "timestamp" : {
+      "type" : "string"
+    }
+  }
+}
