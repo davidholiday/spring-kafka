@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 @Entity
 public class Event {
     
+    public Event() {/* noop */ }
+
     public Event(com.davidholiday.json.Event jsonEvent) {
         this.playerId = jsonEvent.getPlayerId();
         this.gameId = jsonEvent.getGameId();

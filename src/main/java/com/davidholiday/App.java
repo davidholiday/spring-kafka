@@ -5,8 +5,6 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 import org.apache.kafka.clients.admin.NewTopic;
-import org.hibernate.dialect.lock.OptimisticEntityLockException;
-import org.joda.money.Money;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -73,6 +71,8 @@ public class App {
 
     @Bean
     public ApplicationRunner runner(KafkaTemplate<String, String> template) {
+        LOG.info("*!* SENDING TEST MESSAGE *!*");
+
         ObjectMapper mapper = new ObjectMapper();
 
         var event = new Event();
@@ -90,7 +90,7 @@ public class App {
 
 
     @KafkaListener(id = "eventConsumer", topics = EVENT_TOPIC)
-    public void listen(String in) throws Exception {
+    public void listenToEventTopic(String in) throws Exception {
         LOG.info("received event message: {}", in);
         ObjectMapper mapper = new ObjectMapper();
         Event eventJson = new Event();
@@ -121,5 +121,12 @@ public class App {
 
     }
 
+
+    // *!* UNCOMMENT TO SEE EVENT_ACK MESSAGE *!*
+    //
+    // @KafkaListener(id = "eventAckConsumer", topics = EVENT_ACK_TOPIC)
+    // public void listenToEventAckTopic(String in) {
+    //     LOG.info("received event_ack message: {}", in);
+    // }
 
 }
