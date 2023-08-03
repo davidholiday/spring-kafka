@@ -37,4 +37,19 @@ This is a PoC to explore spring/kafka integration. Thematically this mimics the 
   }
 ]
 ```
+6. You can also send messages to the kafka broker directly. The JSON schemas for messages on both topics are located in `/src/main/resources/jsonschema`. One way to send the messages is by downloading kafka and using the scripts located in the `./bin` directory. 
+    * ex producer
+    ```
+    snerd@bear:~/lab/kafka_2.13-3.5.1/bin$ ./kafka-console-producer.sh --broker-list localhost:29092 --topic "event" 
+
+    >{"player_id":"59a9bc6e-3c27-46c5-89b5-5822ed085dfb","game_id":"945d9896-d3a2-4dec-ac36-1933daa74920","currency_code":"USD","bet":25.0,"payout":0.0,"timestamp":"2023-08-02T21:13:06.666220758"}
+    ```
+
+    * ex consumer (with the response to the above message)
+    ```
+    ./kafka-console-consumer.sh --bootstrap-server localhost:29092 --topic "event_ack"
+
+    {"player_id":"59a9bc6e-3c27-46c5-89b5-5822ed085dfb","game_id":"945d9896-d3a2-4dec-ac36-1933daa74920","response_code":"OK"}
+
+    ```
 
