@@ -14,6 +14,7 @@ public class Event {
 
     public static final String PLAYER_ID_KEY = "player_id";
     public static final String GAME_ID_KEY = "game_id";
+    public static final String CURRENCY_CODE_KEY = "currency_code";
     public static final String BET_KEY = "bet";
     public static final String PAYOUT_KEY = "payout";
     public static final String TIMESTAMP_KEY = "timestamp";
@@ -24,14 +25,17 @@ public class Event {
     @JsonProperty(GAME_ID_KEY)
     private String gameId;
 
+    @JsonProperty(CURRENCY_CODE_KEY)
+    private String currencyCode;
+
     @JsonProperty(BET_KEY)
-    private Money bet;
+    private double bet;
 
     @JsonProperty(PAYOUT_KEY)
-    private Money payout;
+    private double payout;
 
     @JsonProperty(TIMESTAMP_KEY)
-    private LocalDateTime timestamp;
+    private String timestamp;
 
     //
 
@@ -59,35 +63,48 @@ public class Event {
 
     //
 
+    @JsonProperty(CURRENCY_CODE_KEY)
+    public String getCurrencyCode() {
+        return currencyCode;
+    }
+
+    @JsonProperty(CURRENCY_CODE_KEY) 
+    public void setCurrencyCode(String currencyCode) {
+        this.currencyCode = currencyCode;
+    }
+
+
+    //
+
     @JsonProperty(BET_KEY)
-    public Money getBet() {
+    public double getBet() {
         return bet;
     }
 
     @JsonProperty(BET_KEY)
-    public void setBet(Money bet) {
+    public void setBet(double bet) {
         this.bet = bet;
     }
 
     //
 
     @JsonProperty(PAYOUT_KEY)
-    public Money getPayout() {
+    public double getPayout() {
         return payout;
     }
 
     @JsonProperty(PAYOUT_KEY)
-    public void setPayout(Money payout) {
+    public void setPayout(double payout) {
         this.payout = payout;
     }
 
     //
 
-    public LocalDateTime getTimestamp() {
+    public String getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(LocalDateTime timestamp) {
+    public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
 

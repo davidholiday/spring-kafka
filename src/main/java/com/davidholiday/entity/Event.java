@@ -1,14 +1,22 @@
 package com.davidholiday.entity;
 
-
 import jakarta.persistence.*;
 
 
 @Entity
 public class Event {
     
+    public Event(com.davidholiday.json.Event jsonEvent) {
+        this.playerId = jsonEvent.getPlayerId();
+        this.gameId = jsonEvent.getGameId();
+        this.currencyCode = jsonEvent.getCurrencyCode();
+        this.bet = jsonEvent.getBet();
+        this.payout = jsonEvent.getPayout();
+        this.timestamp = jsonEvent.getTimestamp();
+    }
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
 
     @Column(nullable=false)
@@ -25,6 +33,9 @@ public class Event {
 
     @Column(nullable=false)
     private double payout;
+
+    @Column(nullable=false)
+    private String timestamp;
 
     //
 
@@ -76,8 +87,17 @@ public class Event {
         this.payout = payout;
     }
 
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
+    }
+
     //
 
+    
     
 
 }
